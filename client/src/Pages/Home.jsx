@@ -4,9 +4,12 @@ const Home = () => {
   return (
     <aside>
       {/* user name and user profile */}
-      <div className='container bg-primary rounded-2 shado text-white'>
-        <h1>welcome : 🥳</h1>
+      <div className='pt-5'>
+      <div className='container  bg-primary rounded-2 shado text-white'>
+        <h1 className=''>welcome : 🥳</h1>
       </div>
+      </div>
+      
 
 
       {/* tasks lists*/}
@@ -15,7 +18,7 @@ const Home = () => {
       </div>
 
 
-      
+
     </aside>
     
   )
