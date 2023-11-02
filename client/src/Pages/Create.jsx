@@ -1,29 +1,59 @@
-import React,{useState, useEffect} from 'react'
 
+import React, { useState } from 'react';
+import axios from 'axios';
+import {toast} from 'react-toastify'
 const Create = () => {
-  const[title, setTitle] = useState('');
-  const[Date, setDate] = useState('');
+  const [title, setTitle] = useState('');
+  const [date, setDate] = useState('');
+  const [status, setStatus] = useState('');
 
-  // handle submit
-  function HandleSubmit(){
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/create', {
+        title,
+        date,
+        status,
+      });
+      console.log('Task created. Task ID:', response.data.task_id);
+      toast.success("track item was created")
+    } catch (error) {
+      console.error('Error creating task:', error);
+      toast.error("error occerd")
+    }
+  };
 
-  }
   return (
-    <div className='container bg-body-secondary p-5 rounded-3'> 
-      <form className='form-group ' action="">
-        <label >Title</label><br />
-        <input type="text" className='form-control' placeholder='Type the day tracker'/><br />
-        <label>Status</label><br />
-        <input type="checkbox" name="complete" id="" /><br></br>
-        <label >Date</label><br />
-        <input type="date" className='form-control' name="set the date " id="" />
-      </form>
-      {/* button submit */}
-      <div className='pt-4'>
-        <button className='btn btn-primary'>Submit</button>
-      </div>
+    <div className='container bg-secondary mt-3 p-5 rounded-4 text-white'>
+        <form className='form-group  ' onSubmit={handleSubmit}>
+      <label>Title</label>
+      <input
+        type="text"
+        placeholder="Title"
+        className='form-control'
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      /><br />
+      <label>Date</label><br />
+      <input
+        type="date"
+        value={date}
+        className='form-control'
+        onChange={(e) => setDate(e.target.value)}
+      /><br />
+      <label>Status</label><br />
+      <input
+        type="text"
+        placeholder="Status"
+        value={status}
+        className='form-control'
+        onChange={(e) => setStatus(e.target.value)}
+      />
+      <button className='btn btn-success mt-4' type="submit">Create Task</button>
+    </form>
     </div>
-  )
-}
+    
+  );
+};
 
-export default Create
+export default Create;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { auth, provider } from "../../firebase.config";
 import { signInWithPopup } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
-
+import {toast} from 'react-toastify'
 // import {} from 'react-icons'
 const GoogleAuth = () => {
   const [value, setValue] = useState("");
@@ -14,7 +14,7 @@ const navigate = useNavigate();
       setValue(data.user.email);
       localStorage.setItem("email", data.user.email);
 
-
+      toast.success("login sucessfully")
       // history.push('/home')
     });
   };
