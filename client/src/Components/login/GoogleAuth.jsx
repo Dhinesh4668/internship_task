@@ -12,11 +12,14 @@ const GoogleAuth = () => {
     signInWithPopup(auth, provider).then((data) => {
       setValue(data.user.email);
       localStorage.setItem("email", data.user.email);
+      localStorage.setItem("name", data.user.displayName);
+      localStorage.setItem("avathor", data.user.photoURL)
+      console.log(data.user.displayName);
       toast.success("login sucessfully");
     });
   };
   useEffect(() => {
-    setValue(localStorage.getItem("email"));
+    setValue(localStorage.getItem("name"));
   });
   
   return (
