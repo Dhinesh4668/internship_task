@@ -36,25 +36,6 @@ app.get('/', (req,res)=>{
     res.send("home directry")
 })
 
-// crerate the task 
-// app.post('/create', (req,res)=>{
-//     const id = req.body.id;
-//     const title = req.body.title;
-//     const date = req.body.date;
-//     const status = req.body.status;
-//     // if (!title || !date || !status) {
-//     //     return res.status(400).send("Missing required fields.");
-//     // }
-
-//     const insert = "INSERT INTO `task` (`id`,`title`, `date`, `status`) VALUES (?,?,?,?)";
-//     db.query(insert,[id,title,date,status], (err,result)=>{
-//         if(err){
-//             return res.status(500).send(err)
-//         }else{
-//             return res.status(200).send(result.insertId.toString())
-//         }
-//     })
-// })
 app.post('/create', (req, res) => {
     const { title, date, status } = req.body;
   

@@ -4,7 +4,8 @@ import GoogleAuth from '../login/GoogleAuth';
 import {toast} from 'react-toastify'
 import { useNavigate } from "react-router-dom";
 import {TbLogout} from 'react-icons/tb'
-
+import{BiHomeAlt, }from 'react-icons/bi'
+import {FiEdit2} from 'react-icons/fi'
 const Slider = () => {
   const isLoggedIn = localStorage.getItem('email'); 
   const navigate = useNavigate()
@@ -13,10 +14,10 @@ const Slider = () => {
         {isLoggedIn ? (
           <>
             <div>
-              <Link className="nav-link font-weight-bold" to="/home">Home</Link>
+              <Link className="nav-link font-weight-bold" to="/home"><BiHomeAlt size={25} alignmentBaseline="central"/> Home</Link>
             </div>
             <div>
-              <Link  className="nav-link font-weight-bold" to="/create">Create Task</Link>
+              <Link  className="nav-link font-weight-bold" to="/create"><FiEdit2 size={25} alignmentBaseline="central"/> Create Task</Link>
             </div>
             <div>
               <button className="btn btn-danger font-weight-bold" onClick={() => {
