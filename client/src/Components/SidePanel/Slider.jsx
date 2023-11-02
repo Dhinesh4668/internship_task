@@ -3,53 +3,35 @@ import { Link } from 'react-router-dom';
 import GoogleAuth from '../login/GoogleAuth';
 import {toast} from 'react-toastify'
 import { useNavigate } from "react-router-dom";
+import {TbLogout} from 'react-icons/tb'
+
 const Slider = () => {
   const isLoggedIn = localStorage.getItem('email'); 
   const navigate = useNavigate()
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-  <div className="container">
-    <Link className="navbar-brand" to="/">Daily Task Planner</Link>
-    <button
-      className="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="collapse navbar-collapse" id="navbarNav">
-      <ul className="navbar-nav ml-auto centered-nav"> {/* Apply the centered-nav class */}
+      <div className="d-flex flex-row justify-content-around mb-4  p-3 text-white bg-secondary">
         {isLoggedIn ? (
           <>
-            <li className="nav-item">
-              <Link className="nav-link" to="/">Home</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/create">Create Task</Link>
-            </li>
-            <li className="nav-item">
-              <button className="btn btn-danger" onClick={() => {
+            <div>
+              <Link className="nav-link font-weight-bold" to="/home">Home</Link>
+            </div>
+            <div>
+              <Link  className="nav-link font-weight-bold" to="/create">Create Task</Link>
+            </div>
+            <div>
+              <button className="btn btn-danger font-weight-bold" onClick={() => {
                 localStorage.clear();
                 navigate('/');
                 toast.success("Logout successfully");
-              }}>Logout</button>
-            </li>
+              }}><TbLogout size={25} /> Logout</button>
+            </div>
           </>
         ) : (
-          <li className="nav-item">
+          <div className="nav-item">
             <GoogleAuth />
-          </li>
+          </div>
         )}
-      </ul>
     </div>
-  </div>
-</nav>
-
-
   );
 };
 
