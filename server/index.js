@@ -21,18 +21,47 @@ db.connect((err) => {
   });
 
 // simple rest api 
-app.get('/',(req,res)=>{
-    res.send("home")
+app.get('/display',(req,res)=>{
+    const sql = `SELECT * FROM task`
+    db.query(sql, (error,result)=>{
+        if(!error){
+            res.json(result)
+        }else{
+            res.status(500).send(error)
+        }
+    })
 })
 
-app.get('/display', (req,res)=>{
-    res.send("displey the task")
+app.get('/', (req,res)=>{
+    res.send("home directry")
 })
 
 // crerate the task 
 app.post('/create', (req,res)=>{
-    res.send("create the task")
+    const id = req.body.id;
+    const title = req.body.title;
+    const date = req.body.date;
+    const status = req.body.status;
+    // if (!title || !date || !status) {
+    //     return res.status(400).send("Missing required fields.");
+    // }
+
+    const insert = "INSERT INTO `task` (`id`,`title`, `date`, `status`) VALUES (?,?,?,?)";
+    db.query(insert,[id,title,date,status], (err,result)=>{
+        if(err){
+            return res.status(500).send(err)
+        }else{
+            return res.status(200).send(result.insertId.toString())
+        }
+    })
 })
+
+
+// delete 
+app.delete('/delete', (req,res)=>{
+    res.send("delete")
+})
+
 
 app.listen(5000, ()=>{
     console.log("app is listning........")
