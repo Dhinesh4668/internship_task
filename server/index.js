@@ -1,4 +1,6 @@
-const mysql = require('mysql')
+// const mysql = require('mysql')
+// const postgre = require('postgres')
+require('dotenv').config();
 const express = require('express')
 const app = express()
 const cors = require('cors')
