@@ -7,15 +7,6 @@ import { ItemTrack } from "../Components";
 const Home = () => {
   const [data, setData] = useState([]);
   const [user, setUser] = useState(null);
-  const getLocalStorageName = () => {
-    const storedName = localStorage.getItem("name");
-    if (storedName) {
-      setName(storedName);
-    } else {
-      setName("nothing");
-    }
-    console.log(storedName);
-  };
 
   //starting a task timer
   const handleStartTask = (taskId) => {
@@ -80,7 +71,7 @@ const Home = () => {
       <div className="container bg-primary rounded-2 shadow text-white">
         {user ? (
           <div className="d-flex flex-row justify-content-between align-center p-2 mb-5">
-            <h1 className="text-capitalize">Welcome, {user.displayName}</h1>
+            <h1 className="text-capitalize">Welcome back 🐧, {user.displayName}</h1>
             <img src={user.photoURL} className="rounded-circle" style={{width: 50}} alt="user image" />
           </div>
         ) : (
@@ -90,6 +81,7 @@ const Home = () => {
       <div className="bg-success-subtle shadow p-3 mb-3 container rounded-2">
         <h2>Tracker</h2>
       </div>
+      {/* disply tracker item */}
       <div className="container bg-primary p-3 rounded-3 shadow">
         {data.map((task, index) => (
           <ItemTrack

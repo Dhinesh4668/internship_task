@@ -2,9 +2,6 @@ import React from 'react'
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import { Create, Home, Users } from './Pages'
 import { Slider } from './Components'
-// import GoogleAuth from './Components/login/GoogleAuth'
-
-
 
 const App = () => {
   return (
